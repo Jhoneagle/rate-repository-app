@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ColumnsTightContainer = (props) => {
+const ColumnsLooseContainer = (props) => {
   return (
     <View style={styles.container}>
       {props.children}
@@ -20,4 +20,4 @@ const ColumnsTightContainer = (props) => {
   );
 };
 
-export default ColumnsTightContainer;
+export default ColumnsLooseContainer;

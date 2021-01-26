@@ -5,7 +5,7 @@ import theme from "../../theme";
 import RepositoryStat from "./RepositoryStat";
 import RowsContainer from "../structural/RowsContainer";
 import ColumnsContainer from "../structural/ColumnsContainer";
-import ColumnsTightContainer from "../structural/ColumnsTightContainer";
+import ColumnsLooseContainer from "../structural/ColumnsLooseContainer";
 
 const styles = StyleSheet.create({
   container: {
@@ -66,12 +66,12 @@ const RepositoryItem = ({ data }) => {
               </View>
             </RowsContainer>
           </ColumnsContainer>
-          <ColumnsTightContainer>
+          <ColumnsLooseContainer>
             <RepositoryStat name="stars" count={data.stargazersCount} />
             <RepositoryStat name="forks" count={data.forksCount} />
             <RepositoryStat name="rating" count={data.ratingAverage} />
             <RepositoryStat name="review" count={data.reviewCount} />
-          </ColumnsTightContainer>
+          </ColumnsLooseContainer>
         </View>
       </TouchableOpacity>
     );
