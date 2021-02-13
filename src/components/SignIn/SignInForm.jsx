@@ -1,9 +1,9 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
-import theme from "../theme";
+import theme from "../../theme";
 
-import FormikTextInput from "./FormikTextInput";
-import Text from "./Text";
+import FormikTextInput from "../FormikTextInput";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
 const SignInForm = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
-      <FormikTextInput name="username" placeholder="Username" />
-      <FormikTextInput name="password" placeholder="Password" secureTextEntry />
+      <FormikTextInput testID="usernameField" name="username" placeholder="Username" />
+      <FormikTextInput testID="passwordField" name="password" placeholder="Password" secureTextEntry />
       <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
         <View style={styles.signInBtn}>
-          <Text style={styles.signInBtnText} fontWeight="bold">
+          <Text testID="submitButton" style={styles.signInBtnText} fontWeight="bold">
             Sign in
           </Text>
         </View>

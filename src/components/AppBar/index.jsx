@@ -3,8 +3,10 @@ import { View, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-na
 import { Link } from 'react-router-native';
 import Constants from 'expo-constants';
 
-import Text from "./Text";
-import theme from "../theme";
+import Text from "../Text";
+import theme from "../../theme";
+import useAuthorizedUser from "../../hooks/useAuthorizedUser";
+import SignOut from "../SignOut";
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -26,6 +28,8 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { authorized } = useAuthorizedUser();
+  
   return (
     <TouchableWithoutFeedback>
       <View style={styles.flexContainer}>
@@ -35,11 +39,34 @@ const AppBar = () => {
               Repositories
             </Text>
           </Link>
-          <Link to="/signIn">
-            <Text fontSize="subheading" fontWeight="bold" style={styles.text}>
-              Sign in
-            </Text>
-          </Link>
+          {authorized ? (
+            <>
+              <Link to="/createReview">
+                <Text fontSize="subheading" fontWeight="bold" style={styles.text}>
+                  Create a review
+                </Text>
+              </Link>
+              <Link to="/reviews">
+                <Text fontSize="subheading" fontWeight="bold" style={styles.text}>
+                  My reviews
+                </Text>
+              </Link>
+              <SignOut />
+            </>
+          ) : (
+            <>
+              <Link to="/signIn">
+                <Text fontSize="subheading" fontWeight="bold" style={styles.text}>
+                  Sign in
+                </Text>
+              </Link>
+              <Link to="/signup">
+                <Text fontSize="subheading" fontWeight="bold" style={styles.text}>
+                  Sign up
+                </Text>
+              </Link>
+            </>
+          )}
         </ScrollView>
       </View>
     </TouchableWithoutFeedback>

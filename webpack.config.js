@@ -1,7 +1,7 @@
-const path = require('path');
-const createExpoWebpackConfigAsync = require('@expo/webpack-config');
+import createExpoWebpackConfigAsync from "@expo/webpack-config";
+import path from "path";
 
-module.exports = async function(env, argv) {
+export default async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
   
   config.module.rules.push({
@@ -11,4 +11,4 @@ module.exports = async function(env, argv) {
   });
   
   return config;
-};
+}

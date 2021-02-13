@@ -1,11 +1,12 @@
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import { useHistory } from 'react-router-native';
 import Text from "../Text";
 import theme from "../../theme";
 import RepositoryStat from "./RepositoryStat";
-import RowsContainer from "../structural/RowsContainer";
-import ColumnsContainer from "../structural/ColumnsContainer";
-import ColumnsLooseContainer from "../structural/ColumnsLooseContainer";
+import RowsContainer from "../RowsContainer";
+import ColumnsContainer from "../ColumnsContainer";
+import ColumnsLooseContainer from "../ColumnsLooseContainer";
 
 const styles = StyleSheet.create({
   container: {
@@ -41,36 +42,42 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItem = ({ data }) => {
-    return (
-      <TouchableOpacity activeOpacity={0.8}>
+const RepositoryItem = ({ repository }) => {
+  const history = useHistory();
+
+  const onPress = () => {
+    history.push(`/repositories/${repository.id}`);
+  };
+
+  return (
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
         <View style={styles.container}>
           <ColumnsContainer>
             <View>
               <Image
                 style={styles.tinyLogo}
                 source={{
-                  uri: data.ownerAvatarUrl,
+                  uri: repository.ownerAvatarUrl,
                 }}
               />
             </View>
             <RowsContainer>
               <View>
-                <Text style={styles.fullname}>{data.fullName}</Text>
+                <Text style={styles.fullname} testID="fullName">{repository.fullName}</Text>
               </View>
               <View>
-                <Text style={styles.description}>{data.description}</Text>
+                <Text style={styles.description} testID="description">{repository.description}</Text>
               </View>
               <View style={styles.language}>
-                <Text style={styles.languageText}>{data.language}</Text>
+                <Text style={styles.languageText} testID="language">{repository.language}</Text>
               </View>
             </RowsContainer>
           </ColumnsContainer>
           <ColumnsLooseContainer>
-            <RepositoryStat name="stars" count={data.stargazersCount} />
-            <RepositoryStat name="forks" count={data.forksCount} />
-            <RepositoryStat name="rating" count={data.ratingAverage} />
-            <RepositoryStat name="review" count={data.reviewCount} />
+            <RepositoryStat name="stars" count={repository.stargazersCount} testID="stars" />
+            <RepositoryStat name="forks" count={repository.forksCount} testID="forks" />
+            <RepositoryStat name="rating" count={repository.ratingAverage} testID="rating" />
+            <RepositoryStat name="review" count={repository.reviewCount} testID="reviews" />
           </ColumnsLooseContainer>
         </View>
       </TouchableOpacity>
