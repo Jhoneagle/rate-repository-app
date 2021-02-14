@@ -1,4 +1,4 @@
-import { gql } from '@apollo/react-hooks';
+import {gql} from '@apollo/react-hooks';
 
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {

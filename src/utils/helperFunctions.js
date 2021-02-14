@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import {format} from 'date-fns';
 
 export const formatValue = value => {
   if (value >= 1000) {

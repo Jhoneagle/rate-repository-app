@@ -1,8 +1,8 @@
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import { useContext } from 'react';
-import { useHistory } from 'react-router-native';
+import {useApolloClient, useMutation} from '@apollo/react-hooks';
+import {useContext} from 'react';
+import {useHistory} from 'react-router-native';
 
-import { AUTHORIZE } from '../graphql/mutations';
+import {AUTHORIZE} from '../graphql/mutations';
 import AuthStorageContext from '../contexts/AuthStorageContext';
 
 const useSignIn = () => {

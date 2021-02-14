@@ -1,6 +1,6 @@
-import { useMutation } from '@apollo/react-hooks';
+import {useMutation} from '@apollo/react-hooks';
 
-import { DELETE_REVIEW } from '../graphql/mutations';
+import {DELETE_REVIEW} from '../graphql/mutations';
 
 const useDeleteReview = () => {
   const [mutate, result] = useMutation(DELETE_REVIEW);

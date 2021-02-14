@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { Link } from 'react-router-native';
+import {ScrollView, StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
+import {Link} from 'react-router-native';
 import Constants from 'expo-constants';
 
 import Text from "../Text";

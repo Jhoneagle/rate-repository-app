@@ -1,6 +1,6 @@
-import { useQuery } from '@apollo/react-hooks';
+import {useQuery} from '@apollo/react-hooks';
 
-import { GET_AUTHORIZED_USER } from '../graphql/queries';
+import {GET_AUTHORIZED_USER} from '../graphql/queries';
 
 const useAuthorizedUser = (variables) => {
   const {

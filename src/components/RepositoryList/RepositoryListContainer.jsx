@@ -1,9 +1,16 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import {FlatList} from 'react-native';
 import RepositoryItem from './RepositoryItem';
-import PickerSelect from './PickerSelect';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
 import {ItemSeparator} from "../ItemSeparator";
+import Loading from "../Loading";
+import Dropdown from "../Dropdown";
+
+const dropdownItems = [
+  { label: 'Latest repositories', value: 'latest_repositories' },
+  { label: 'Highest rated repositories', value: 'highest_rated_repositories' },
+  { label: 'Lowest rated repositories', value: 'lowest_rated_repositories' },
+];
 
 class RepositoryListContainer extends React.Component {
   renderItem = ({ item }) => (
@@ -16,13 +23,13 @@ class RepositoryListContainer extends React.Component {
     return (
       <>
         <SearchBar searchValue={searchValue} handleSearch={handleSearch} />
-        <PickerSelect setOrderBy={setOrderBy} />
+        <Dropdown items={dropdownItems} onValueChange={(value) => setOrderBy(value)} />
       </>
     );
   }
 
   render() {
-    const { repositories, onEndReach } = this.props;
+    const { repositories, onEndReach, loading } = this.props;
 
     if (repositories === undefined) {
       return null;
@@ -40,6 +47,7 @@ class RepositoryListContainer extends React.Component {
         renderItem={this.renderItem}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={this.renderHeader}
+        ListFooterComponent={() => <Loading loading={loading}/>}
         onEndReached={onEndReach}
         onEndReachedThreshold={0.5}
       />

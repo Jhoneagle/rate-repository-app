@@ -1,5 +1,5 @@
 import ApolloClient from 'apollo-boost';
-import { APOLLO_URI } from '@env';
+import {APOLLO_URI} from '@env';
 
 // eslint-disable-next-line arrow-body-style
 const createApolloClient = (authStorage) => {

@@ -1,22 +1,18 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import {ActivityIndicator, StyleSheet} from 'react-native';
 
-import Text from './Text';
+import theme from "../theme";
 
 const styles = StyleSheet.create({
-  text: {
+  loader: {
     padding: 20,
     textAlign: 'center',
   }
 });
 
-const Loading = ({ loading, error, errorMessage}) => {
-  if (error) {
-    return <Text style={styles.text}>{errorMessage}</Text>;
-  }
-
+const Loading = ({ loading }) => {
   return loading
-    ? <Text style={styles.text}>Loading...</Text>
+    ? <ActivityIndicator style={styles.loader} color={theme.colors.primary} />
     : null;
 };
 

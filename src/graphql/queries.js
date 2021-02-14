@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import {gql} from 'apollo-boost';
 import {REPOSITORY_DETAILS, REVIEW_DETAILS} from "./fragments";
 
 export const GET_REPOSITORIES = gql`

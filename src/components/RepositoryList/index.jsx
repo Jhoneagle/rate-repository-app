@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDebounce } from 'use-debounce';
+import React, {useState} from 'react';
+import {useDebounce} from 'use-debounce';
 
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryListContainer from './RepositoryListContainer';
@@ -26,7 +26,7 @@ const RepositoryList = () => {
         first: 8,
     };
     
-    const { repositories, fetchMore } = useRepositories(variables);
+    const { repositories, loading, fetchMore } = useRepositories(variables);
     
     const onEndReach = () => {
         fetchMore();
@@ -35,6 +35,7 @@ const RepositoryList = () => {
     return (
       <RepositoryListContainer
         repositories={repositories}
+        loading={loading}
         setOrderBy={setOrderBy}
         setSearchValue={setSearchValue}
         handleSearch={handleSearch}

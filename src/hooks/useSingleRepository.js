@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/react-hooks';
-import { GET_REPOSITORY } from '../graphql/queries';
+import {useQuery} from '@apollo/react-hooks';
+import {GET_REPOSITORY} from '../graphql/queries';
 
 const useSingleRepository = (variables) => {
   const {

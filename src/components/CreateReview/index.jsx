@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-native';
+import {useHistory} from 'react-router-native';
 import useCreateReview from '../../hooks/useCreateReview';
 import CreateReviewContainer from './CreateReviewContainer';
 

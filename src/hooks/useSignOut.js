@@ -1,4 +1,4 @@
-import { useApolloClient } from '@apollo/react-hooks';
+import {useApolloClient} from '@apollo/react-hooks';
 import {useContext} from "react";
 import AuthStorageContext from "../contexts/AuthStorageContext";
 import {useHistory} from "react-router-native";

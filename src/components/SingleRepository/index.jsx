@@ -1,18 +1,19 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-import { useParams } from 'react-router-native';
+import {FlatList} from 'react-native';
+import {useParams} from 'react-router-native';
 import useSingleRepository from '../../hooks/useSingleRepository';
 import RepositoryInfo from './RepositoryInfo';
 import ReviewItem from './ReviewItem';
 import {ItemSeparator} from "../ItemSeparator";
+import Loading from "../Loading";
 
-const Index = () => {
+const SingleRepository = () => {
   const { id } = useParams();
   const variables = {
     id,
     first: 8,
   };
-  const { repository, fetchMore } = useSingleRepository(variables);
+  const { repository, loading, fetchMore } = useSingleRepository(variables);
 
   if (repository === undefined) {
     return null;
@@ -32,14 +33,14 @@ const Index = () => {
     <FlatList
       data={reviewNodes}
       renderItem={({ item }) => <ReviewItem item={item} />}
-      // eslint-disable-next-line no-shadow
       keyExtractor={({ id }) => id}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
+      ListFooterComponent={() => <Loading loading={loading}/>}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
     />
   );
 };
 
-export default Index;
+export default SingleRepository;

@@ -1,50 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router-native';
-import {
-  View, Text, StyleSheet, TouchableOpacity, Alert,
-} from 'react-native';
-import { format } from 'date-fns';
+import {useHistory} from 'react-router-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import theme from '../../theme';
 
 import useDeleteReview from '../../hooks/useDeleteReview';
-import ColumnsContainer from "../ColumnsContainer";
-import RowsContainer from "../RowsContainer";
 import ColumnsLooseContainer from "../ColumnsLooseContainer";
+import generalStyles from "../../utils/generalStyles";
+import ReviewDetails from "../ReviewDetails";
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.containerBackground,
-    flexGrow: 1,
-    flexShrink: 1,
-  },
-  nameText: {
-    marginBottom: 4,
-    fontSize: theme.fontSizes.heading,
-    fontWeight: theme.fontWeights.bold,
-  },
-  dateText: {
-    fontSize: theme.fontSizes.subheading,
-    fontWeight: theme.fontWeights.normal,
-    color: theme.colors.textSecondary,
-    padding: 5,
-  },
-  ratingContainer: {
-    flexDirection: 'row',
-    flexGrow: 0,
-    marginRight: 20,
-    height: 60,
-    width: 60,
-    borderWidth: 3,
-    borderColor: theme.colors.primary,
-    borderRadius: 30,
-    justifyContent: 'center',
-  },
-  ratingText: {
-    fontSize: theme.fontSizes.heading,
-    fontWeight: theme.fontWeights.bold,
-    color: theme.colors.primary,
-    alignSelf: 'center',
-  },
   viewButton: {
     padding: 15,
     margin: 15,
@@ -57,11 +21,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#d73a4a',
     borderRadius: 4,
   },
-  buttonText: {
-    color: '#ffffff',
-    alignSelf: 'center',
-    fontWeight: theme.fontWeights.bold,
-  },
 });
 
 const MyReviewItem = ({ item, refetch }) => {
@@ -71,8 +30,6 @@ const MyReviewItem = ({ item, refetch }) => {
   if (!item) {
     return null;
   }
-
-  const date = format(new Date(item.createdAt), 'dd.MM.yyyy');
 
   const handleViewRepository = () => {
     history.push(`/repositories/${item.repository.id}`);
@@ -105,34 +62,19 @@ const MyReviewItem = ({ item, refetch }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ColumnsContainer>
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingText}>{item.rating}</Text>
-        </View>
-        <RowsContainer>
-          <View>
-            <Text style={styles.nameText}>{item.repository.fullName}</Text>
-          </View>
-          <View>
-            <Text style={styles.dateText}>{date}</Text>
-          </View>
-          <View>
-            <Text>{item.text}</Text>
-          </View>
-        </RowsContainer>
-      </ColumnsContainer>
+    <View style={generalStyles.containerB}>
+      <ReviewDetails review={item} />
       <ColumnsLooseContainer>
         <TouchableOpacity onPress={handleViewRepository} activeOpacity={0.8}>
           <View style={styles.viewButton}>
-            <Text style={styles.buttonText}>
+            <Text style={generalStyles.buttonText}>
               View repository
             </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleDeleteReview} activeOpacity={0.8}>
           <View style={styles.deleteButton}>
-            <Text style={styles.buttonText}>
+            <Text style={generalStyles.buttonText}>
               Delete review
             </Text>
           </View>

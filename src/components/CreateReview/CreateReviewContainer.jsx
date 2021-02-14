@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Formik } from 'formik';
+import {View} from 'react-native';
+import {Formik} from 'formik';
 import * as yup from 'yup';
 
 import CreateReviewForm from './CreateReviewForm';
