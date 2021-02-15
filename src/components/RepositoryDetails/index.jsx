@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryDetails = ({ repository }) => {
+  if (repository === undefined) {
+    return null;
+  }
+  
   return (
     <View style={generalStyles.containerB}>
       <ColumnsContainer>

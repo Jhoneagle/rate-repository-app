@@ -23,16 +23,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyReviewItem = ({ item, refetch }) => {
+const MyReviewItem = ({ review, refetch }) => {
   const history = useHistory();
   const [deleteReview] = useDeleteReview();
 
-  if (!item) {
+  if (!review) {
     return null;
   }
 
   const handleViewRepository = () => {
-    history.push(`/repositories/${item.repository.id}`);
+    history.push(`/repositories/${review.repository.id}`);
     return true;
   };
 
@@ -50,7 +50,7 @@ const MyReviewItem = ({ item, refetch }) => {
         {
           text: 'OK',
           onPress: async () => {
-            const { id } = item;
+            const { id } = review;
             await deleteReview({ id });
             refetch();
           },
@@ -63,7 +63,7 @@ const MyReviewItem = ({ item, refetch }) => {
 
   return (
     <View style={generalStyles.containerB}>
-      <ReviewDetails review={item} />
+      <ReviewDetails review={review} />
       <ColumnsLooseContainer>
         <TouchableOpacity onPress={handleViewRepository} activeOpacity={0.8}>
           <View style={styles.viewButton}>

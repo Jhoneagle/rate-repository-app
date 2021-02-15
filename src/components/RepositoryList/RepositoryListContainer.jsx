@@ -7,16 +7,12 @@ import Loading from "../Loading";
 import Dropdown from "../Dropdown";
 
 const dropdownItems = [
-  { label: 'Latest repositories', value: 'latest_repositories' },
-  { label: 'Highest rated repositories', value: 'highest_rated_repositories' },
-  { label: 'Lowest rated repositories', value: 'lowest_rated_repositories' },
+  { label: 'Latest repositories', value: 'latest' },
+  { label: 'Highest rated repositories', value: 'highest' },
+  { label: 'Lowest rated repositories', value: 'lowest' },
 ];
 
 class RepositoryListContainer extends React.Component {
-  renderItem = ({ item }) => (
-    <RepositoryItem repository={item} />
-  );
-
   renderHeader = () => {
     const { setOrderBy, searchValue, handleSearch } = this.props;
 
@@ -31,7 +27,7 @@ class RepositoryListContainer extends React.Component {
   render() {
     const { repositories, onEndReach, loading } = this.props;
 
-    if (repositories === undefined) {
+    if (!repositories) {
       return null;
     }
 
@@ -44,7 +40,7 @@ class RepositoryListContainer extends React.Component {
         testID="RepositoryListContainer"
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
-        renderItem={this.renderItem}
+        renderItem={({ item }) => <RepositoryItem repository={item} />}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={this.renderHeader}
         ListFooterComponent={() => <Loading loading={loading}/>}

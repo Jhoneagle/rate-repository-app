@@ -13,7 +13,7 @@ const MyReviews = () => {
 
   const { authorized, loading, fetchMore, refetch } = useAuthorizedUser(variables);
 
-  if (authorized === undefined) {
+  if (!authorized) {
     return null;
   }
 
@@ -29,7 +29,7 @@ const MyReviews = () => {
   return (
     <FlatList
       data={reviewNodes}
-      renderItem={({ item }) => <MyReviewItem item={item} refetch={refetch} />}
+      renderItem={({ item }) => <MyReviewItem review={item} refetch={refetch} />}
       ItemSeparatorComponent={ItemSeparator}
       ListFooterComponent={() => <Loading loading={loading}/>}
       onEndReached={onEndReach}

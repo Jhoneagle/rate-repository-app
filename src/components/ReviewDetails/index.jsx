@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
 });
 
 const ReviewDetails = ({ review }) => {
+  if (!review) {
+    return null;
+  }
+  
   return (
     <View style={generalStyles.containerB}>
       <ColumnsContainer>
